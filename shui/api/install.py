@@ -1,8 +1,10 @@
-import requests
+"""Functions for downloading a particular version from the remote repository"""
 import tarfile
+import requests
 
 
 def install_version(logger, version, install_dir):
+    """Download and install a particular Spark/Hadoop version"""
     # Download tarball
     logger(f"Installing {version} to <info>{install_dir}</info>")
     logger(f"Downloading from <info>{version.url}</info>...")
