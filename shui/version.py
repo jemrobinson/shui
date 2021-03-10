@@ -1,8 +1,11 @@
+"""Class to contain information about a Spark/Hadoop version"""
 import re
 from packaging.version import parse as version_parse
 
 
 class Version:
+    """Class to contain information about a Spark/Hadoop version"""
+
     regex = re.compile("spark-([0-9.]*)-bin-hadoop([0-9.]*).tgz$")
 
     def __init__(self, filename, url):
@@ -11,10 +14,12 @@ class Version:
 
     @property
     def spark(self):
+        """Spark version"""
         return self.regex.match(self.filename).group(1)
 
     @property
     def hadoop(self):
+        """Hadoop version"""
         return self.regex.match(self.filename).group(2)
 
     def __str__(self):

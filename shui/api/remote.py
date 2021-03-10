@@ -1,3 +1,4 @@
+"""Functions for interacting with the available versions on the remote repository"""
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -6,6 +7,7 @@ from shui.version import Version
 
 
 def match_links(url, compiled_regex):
+    """Find all links at a URL which match a particular pattern"""
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
     matches = {
@@ -17,6 +19,7 @@ def match_links(url, compiled_regex):
 
 
 def get_versions():
+    """Get all available Spark/Hadoop versions"""
     versions = []
 
     spark_version_dict = match_links(
