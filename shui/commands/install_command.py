@@ -13,7 +13,7 @@ class InstallCommand(Command):
         {--latest : Use the latest available version}
         {--spark=any : Spark version}
         {--hadoop=any : Hadoop version}
-        {--target=cwd : Directory to install into (defaults to current working directory)}
+        {--target=cwd : Directory to install into}
     """
 
     def handle(self):

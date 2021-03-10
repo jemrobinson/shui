@@ -48,7 +48,7 @@ OPTIONS
   --latest               Use the latest available version
   --spark                Spark version (default: "any")
   --hadoop               Hadoop version (default: "any")
-  --target               Directory to install into (defaults to current working directory) (default: "cwd")
+  --target               Directory to install into (default: "cwd")
 
 GLOBAL OPTIONS
   -h (--help)            Display this help message

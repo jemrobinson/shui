@@ -1,9 +1,21 @@
 [tool.poetry]
 name = "shui"
-version = "0.1.0"
-description = "Spark-Hadoop Installer For Linux"
-authors = ["James Robinson <james.em.robinson@gmail.com>"]
+version = "0.2.0"
+description = "Spark-Hadoop Unix Installer"
 license = "MIT"
+authors = ["James Robinson <james.em.robinson@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/jemrobinson/shui"
+keywords = ["Spark", "Hadoop", "installation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: English",
+    "Operating System :: Unix",
+    "Topic :: Software Development",
+    "Topic :: Utilities",
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
