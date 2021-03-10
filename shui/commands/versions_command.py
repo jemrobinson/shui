@@ -1,5 +1,5 @@
 from cleo import Command
-from shifl.api import get_versions
+from shui.api import get_versions
 
 
 class VersionsCommand(Command):
