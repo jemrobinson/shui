@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "shifl"
+name = "shui"
 version = "0.1.0"
 description = "Spark-Hadoop Installer For Linux"
 authors = ["James Robinson <james.em.robinson@gmail.com>"]
@@ -17,7 +17,7 @@ url-normalize = "^1.4.3"
 black = {version = "^20.8b1", allow-prereleases = true}
 
 [tool.poetry.scripts]
-shifl = "shifl.cli:main"
+shui = "shui.cli:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

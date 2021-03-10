@@ -1,9 +1,9 @@
-# SHIFL
-Spark-Hadoop Installer For Unix
+# SHUI
+Spark-Hadoop Unix Installer
 
 ![](https://img.shields.io/badge/system-macOS%7CLinux%7CFreeBSD-green)
 
-[![Python](https://img.shields.io/pypi/pyversions/shifl.svg?logo=python&logoColor=white)](https://pypi.org/project/shifl)
+[![Python](https://img.shields.io/pypi/pyversions/shui.svg?logo=python&logoColor=white)](https://pypi.org/project/shui)
 
 This package uses Python to download and unpack a pre-built version of Spark/Hadoop from Apache.
 Its primary use-case is simplifying unattended installs where the user wants "the latest available version" of these tools.
@@ -15,7 +15,7 @@ Its primary use-case is simplifying unattended installs where the user wants "th
 
 ## Installation
 
-First you'll need to install `shifl` using pip: `pip install shifl`. **Note** this requires `Python >= 3.6`.
+First you'll need to install `shui` using pip: `pip install shui`. **Note** this requires `Python >= 3.6`.
 
 ## Common usage examples
 
@@ -23,7 +23,7 @@ First you'll need to install `shifl` using pip: `pip install shifl`. **Note** th
 
 ```
 USAGE
-  shifl versions [--latest]
+  shui versions [--latest]
 
 OPTIONS
   --latest               Show only the latest available version
@@ -42,7 +42,7 @@ GLOBAL OPTIONS
 
 ```
 USAGE
-  shifl install [--latest] [--spark <...>] [--hadoop <...>] [--target <...>]
+  shui install [--latest] [--spark <...>] [--hadoop <...>] [--target <...>]
 
 OPTIONS
   --latest               Use the latest available version

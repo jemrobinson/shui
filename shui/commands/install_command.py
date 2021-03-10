@@ -1,7 +1,7 @@
 from contextlib import suppress
 import pathlib
 from cleo import Command
-from shifl.api import get_versions, install_version
+from shui.api import get_versions, install_version
 
 
 class InstallCommand(Command):
