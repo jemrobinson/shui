@@ -1,6 +1,7 @@
 import re
 from packaging.version import parse as version_parse
 
+
 class Version:
     regex = re.compile("spark-([0-9.]*)-bin-hadoop([0-9.]*).tgz$")
 

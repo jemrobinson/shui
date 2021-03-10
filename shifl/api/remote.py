@@ -23,9 +23,7 @@ def get_versions():
         "https://archive.apache.org/dist/spark/", re.compile("spark-*")
     )
     for version in spark_version_dict:
-        full_version_dict = match_links(
-            spark_version_dict[version], Version.regex
-        )
+        full_version_dict = match_links(spark_version_dict[version], Version.regex)
         versions += [
             Version(filename, url) for filename, url in full_version_dict.items()
         ]
