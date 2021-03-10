@@ -1,5 +1,5 @@
 # SHIFL
-Spark-Hadoop Installer For Linux
+Spark-Hadoop Installer For Unix
 
 ![](https://img.shields.io/badge/system-macOS%7CLinux%7CFreeBSD-green)
 
@@ -23,7 +23,7 @@ First you'll need to install `shifl` using pip: `pip install shifl`. **Note** th
 
 ```
 USAGE
-  python shifl.py versions [--latest]
+  shifl versions [--latest]
 
 OPTIONS
   --latest               Show only the latest available version
@@ -42,7 +42,7 @@ GLOBAL OPTIONS
 
 ```
 USAGE
-  python shifl.py install [--latest] [--spark <...>] [--hadoop <...>] [--target <...>]
+  shifl install [--latest] [--spark <...>] [--hadoop <...>] [--target <...>]
 
 OPTIONS
   --latest               Use the latest available version
