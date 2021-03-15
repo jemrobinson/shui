@@ -24,6 +24,7 @@ cleo = "^0.8.1"
 packaging = "^20.9"
 pathlib3x = "^1.3.9"
 requests = "^2.25.1"
+tqdm = "^4.59.0"
 url-normalize = "^1.4.3"
 
 [tool.poetry.dev-dependencies]
