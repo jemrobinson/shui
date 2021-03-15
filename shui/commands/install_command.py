@@ -1,6 +1,6 @@
 """Command-line application for installing a particular Spark/Hadoop version"""
 from contextlib import suppress
-import pathlib
+import pathlib3x as pathlib
 from cleo import Command
 from shui.api import get_versions, install_version
 
