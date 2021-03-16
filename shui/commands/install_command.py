@@ -2,8 +2,8 @@
 from contextlib import suppress
 import pathlib3x as pathlib
 from cleo import Command
-from shui.api.download import download_version, get_paths
-from shui.api.install import cleanup, extract_tarball, verify_tarball
+from shui.api.download import download_version, get_file_details
+from shui.api.install import extract_tarball
 from shui.api.versions import get_versions
 
 
@@ -56,29 +56,27 @@ class InstallCommand(Command):
             f"Installing <comment>{selected_version}</comment> in <info>{install_dir}</info>"
         )
         # Download tarball and checksum
-        path_details = get_paths(selected_version, install_dir)
-        for path_detail in path_details.values():
-            path, url = path_detail["path"], path_detail["url"]
+        file_with_hash = get_file_details(selected_version, install_dir)
+        for fileinfo in file_with_hash:
             self.line(
-                f"Downloading <comment>{path.name}</comment> from <info>{url}</info>"
+                f"Downloading <comment>{fileinfo.name}</comment> from <info>{fileinfo.url}</info>"
             )
-            download_version(url, path)
-            self.line(f"Finished downloading <comment>{path.name}</comment>")
+            download_version(fileinfo)
+            self.line(f"Finished downloading <comment>{fileinfo.name}</comment>")
         # Verify tarball
-        if verify_tarball(path_details):
+        if file_with_hash.verify():
             self.line(
                 f"Verified <comment>{selected_version.filename}</comment> using SHA512 hash"
             )
         else:
             raise IOError(f"Could not verify {selected_version} using SHA512!")
         # Extract tarball
-        tarball_path = path_details["file"]["path"]
         self.line(
             f"Extracting <comment>{selected_version}</comment> to <info>{install_dir}</info>"
         )
-        installation_path = extract_tarball(tarball_path, install_dir)
+        installation_path = extract_tarball(file_with_hash.file, install_dir)
         self.line(f"Cleaning up downloaded files from <comment>{install_dir}</comment>")
-        cleanup(path_details)
+        file_with_hash.remove()
         self.line(
             f"Finished installing <comment>{selected_version}</comment> to <info>{str(installation_path)}</info>"
         )
