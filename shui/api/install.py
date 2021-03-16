@@ -1,48 +1,35 @@
-"""Functions for downloading a particular version from the remote repository"""
+"""Functions for installing a particular version from a local tarball"""
 import hashlib
 import tarfile
-from tqdm import tqdm
-import requests
 
 
-def install_version(logger, version, install_dir):
-    """Download and install a particular Spark/Hadoop version"""
-    # Construct local paths
-    logger(f"Installing {version} to <info>{install_dir}</info>")
-    tarball_path = install_dir / version.filename
-    sha512_path = tarball_path.append_suffix(".sha512")
-    # Download tarball and SHA512 sum
-    download(logger, version.url, tarball_path)
-    download(logger, f"{version.url}.sha512", sha512_path)
-    # Verify tarball
-    if verify_tarball(tarball_path, sha512_path):
-        logger(f"Verified SHA512 hash for <info>{version.filename}</info>")
-    else:
-        raise IOError(f"Could not verify {version} using SHA512!")
-    # Extract tarball
+def cleanup(path_details):
+    """Remove tarball and SHA512 hash"""
+    for path in [details["path"] for details in path_details.values()]:
+        if path.is_file():
+            path.unlink()
+
+
+def extract_tarball(tarball_path, install_dir):
+    """Extract tarball to a local path"""
     if not tarball_path.is_file():
-        raise ValueError(f"Could not download {version} to <info>{install_dir}</info>!")
+        raise ValueError(
+            f"Could not find a valid tarball at <info>{tarball_path}</info>!"
+        )
     with tarfile.open(tarball_path, "r:gz") as f_tarball:
+        extraction_dir = [
+            obj.name
+            for obj in f_tarball.getmembers()
+            if obj.isdir() and "/" not in obj.name
+        ][0]
         f_tarball.extractall(install_dir)
-    # Remove tarball
-    tarball_path.unlink()
+    return install_dir / extraction_dir
 
 
-def download(logger, remote_url, local_path):
-    """Download from a remote URL to a local path"""
-    logger(f"Downloading from <info>{remote_url}</info>...")
-    response = requests.get(remote_url, stream=True, allow_redirects=True)
-    total_size = int(response.headers.get("content-length"))
-    with open(local_path, "wb") as output_file:
-        with tqdm(total=total_size, unit="B", unit_scale=True) as progress_bar:
-            for chunk in response.iter_content(chunk_size=1024):
-                if chunk:
-                    output_file.write(chunk)
-                    progress_bar.update(len(chunk))
-
-
-def verify_tarball(file_path, sha512_path):
+def verify_tarball(path_details):
     """Verify that a file matches its SHA512 hash"""
+    file_path = path_details["file"]["path"]
+    sha512_path = path_details["sha512"]["path"]
     # Get the file hash
     file_hash = hashlib.sha512()
     buffer_size = 524288  # read in chunks of 512kb

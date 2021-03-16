@@ -2,7 +2,9 @@
 from contextlib import suppress
 import pathlib3x as pathlib
 from cleo import Command
-from shui.api import get_versions, install_version
+from shui.api.download import download_version, get_paths
+from shui.api.install import cleanup, extract_tarball, verify_tarball
+from shui.api.versions import get_versions
 
 
 class InstallCommand(Command):
@@ -32,7 +34,9 @@ class InstallCommand(Command):
                 ]
             if not len(matching_versions) == 1:
                 self.line(
-                    f"Found {len(matching_versions)} versions matching <comment>Spark</comment> <info>{self.option('spark')}</info>; <comment>Hadoop</comment> <info>{self.option('hadoop')}</info>"
+                    f"Found {len(matching_versions)} versions matching"
+                    + f"<comment>Spark</comment> <info>{self.option('spark')}</info>;"
+                    + f"<comment>Hadoop</comment> <info>{self.option('hadoop')}</info>"
                 )
                 for version in matching_versions:
                     self.line(f"  - Found {version}")
@@ -48,4 +52,33 @@ class InstallCommand(Command):
             install_dir.mkdir(parents=True, exist_ok=True)
         if not install_dir.is_dir():
             raise ValueError(f"{install_dir} is not a valid installation directory!")
-        install_version(self.line, selected_version, install_dir)
+        self.line(
+            f"Installing <comment>{selected_version}</comment> in <info>{install_dir}</info>"
+        )
+        # Download tarball and checksum
+        path_details = get_paths(selected_version, install_dir)
+        for path_detail in path_details.values():
+            path, url = path_detail["path"], path_detail["url"]
+            self.line(
+                f"Downloading <comment>{path.name}</comment> from <info>{url}</info>"
+            )
+            download_version(url, path)
+            self.line(f"Finished downloading <comment>{path.name}</comment>")
+        # Verify tarball
+        if verify_tarball(path_details):
+            self.line(
+                f"Verified <comment>{selected_version.filename}</comment> using SHA512 hash"
+            )
+        else:
+            raise IOError(f"Could not verify {selected_version} using SHA512!")
+        # Extract tarball
+        tarball_path = path_details["file"]["path"]
+        self.line(
+            f"Extracting <comment>{selected_version}</comment> to <info>{install_dir}</info>"
+        )
+        installation_path = extract_tarball(tarball_path, install_dir)
+        self.line(f"Cleaning up downloaded files from <comment>{install_dir}</comment>")
+        cleanup(path_details)
+        self.line(
+            f"Finished installing <comment>{selected_version}</comment> to <info>{str(installation_path)}</info>"
+        )
