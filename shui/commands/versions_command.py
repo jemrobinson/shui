@@ -16,4 +16,4 @@ class VersionsCommand(Command):
         if self.option("latest"):
             versions = [sorted(versions)[-1]]
         for version in versions:
-            self.line(f"  - Found {version}")
+            self.line(f"Available version: {version}")
