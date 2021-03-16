@@ -20,10 +20,6 @@ class FileInfo:
         """Boolean indicating whether this is a hashfile"""
         return self.path.suffix == ".sha512"
 
-    def is_hash_for(self, other):
-        """Boolean indicating whether this is the hashfile corresponding to another file"""
-        return self.is_hashfile and self.path.stem == other.path.name
-
     def download(self):
         """Download this Spark/Hadoop version from a remote URL to a local path"""
         response = requests.get(self.url, stream=True, allow_redirects=True)
@@ -34,3 +30,12 @@ class FileInfo:
                     if chunk:
                         output_file.write(chunk)
                         progress_bar.update(len(chunk))
+
+    def is_hash_for(self, other):
+        """Boolean indicating whether this is the hashfile corresponding to another file"""
+        return self.is_hashfile and self.path.stem == other.path.name
+
+    def remove(self):
+        """Remove the local file"""
+        if self.path.is_file():
+            self.path.unlink()
