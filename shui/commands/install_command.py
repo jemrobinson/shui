@@ -2,7 +2,7 @@
 from contextlib import suppress
 import pathlib3x as pathlib
 from cleo import Command
-from shui.functions import download_version, extract_tarball, get_file_details, get_versions
+from shui.functions import extract_tarball, get_file_details, get_versions
 
 
 class InstallCommand(Command):
@@ -59,7 +59,7 @@ class InstallCommand(Command):
             self.line(
                 f"Downloading <comment>{fileinfo.name}</comment> from <info>{fileinfo.url}</info>"
             )
-            download_version(fileinfo)
+            fileinfo.download()
             self.line(f"Finished downloading <comment>{fileinfo.name}</comment>")
         # Verify tarball
         if file_with_hash.verify():
