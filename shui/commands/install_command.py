@@ -2,9 +2,7 @@
 from contextlib import suppress
 import pathlib3x as pathlib
 from cleo import Command
-from shui.api.download import download_version, get_file_details
-from shui.api.install import extract_tarball
-from shui.api.versions import get_versions
+from shui.functions import download_version, extract_tarball, get_file_details, get_versions
 
 
 class InstallCommand(Command):

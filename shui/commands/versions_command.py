@@ -1,6 +1,6 @@
 """Command-line application for getting available Spark/Hadoop versions"""
 from cleo import Command
-from shui.api import get_versions
+from shui.functions import get_versions
 
 
 class VersionsCommand(Command):
