@@ -1,7 +1,7 @@
 """Functions for downloading a particular version from the remote repository"""
 from tqdm import tqdm
 import requests
-from shui.models import FileInfo, FileWithHash
+from shui.classes import FileInfo, FileWithHash
 
 
 def download_version(fileinfo):
