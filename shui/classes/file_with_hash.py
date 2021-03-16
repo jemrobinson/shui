@@ -19,6 +19,11 @@ class FileWithHash:
         yield self.file
         yield self.hashfile
 
+    def remove(self):
+        """Remove tarball and SHA512 hash"""
+        for fileinfo in self:
+            fileinfo.remove()
+
     def verify(self):
         """Verify that a file matches its SHA512 hash"""
         # Get the file hash
@@ -39,9 +44,3 @@ class FileWithHash:
                 .lower()
             )
         return calculated_hash == reference_hash
-
-    def remove(self):
-        """Remove tarball and SHA512 hash"""
-        for fileinfo in self:
-            if fileinfo.path.is_file():
-                fileinfo.path.unlink()
