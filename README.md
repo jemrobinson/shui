@@ -1,25 +1,31 @@
 # SHUI
 Spark-Hadoop Unix Installer
 
-![](https://img.shields.io/badge/system-macOS%7CLinux%7CFreeBSD-green)
+![OSes](https://img.shields.io/badge/system-macOS%7CLinux%7CFreeBSD-green)
+![Architectures](https://img.shields.io/badge/arch-i686%7Cx86__64-yellowgreen)
 
 [![Python](https://img.shields.io/pypi/pyversions/shui.svg?logo=python&logoColor=white)](https://pypi.org/project/shui)
+[![PyPI version](https://badge.fury.io/py/shui.svg)](https://badge.fury.io/py/shui)
+[![PyPI downloads](https://img.shields.io/pypi/dm/shui)](https://img.shields.io/pypi/dm/shui)
+[![Code style](https://github.com/jemrobinson/shui/workflows/check-code-style/badge.svg)](https://github.com/jemrobinson/shui/actions)
 
 This package uses Python to download and unpack a pre-built version of Spark/Hadoop from Apache.
 Its primary use-case is simplifying unattended installs where the user wants "the latest available version" of these tools.
 
 ## Features
 
-* download Spark/Hadoop release from Apache.
+* download Spark/Hadoop release tarball from Apache.
+* verify the tarball using the SHA512 sum provided by Apache.
 * unpack the tarball to a target directory on your local system.
 
 ## Installation
 
-First you'll need to install `shui` using pip: `pip install shui`. **Note** this requires `Python >= 3.6`.
+First you'll need to install `shui` using pip: `pip install shui`.
 
-## Common usage examples
+## Usage
 
 ### Versions
+The `versions` command shows you all available Spark/Hadoop versions.
 
 ```
 USAGE
@@ -39,6 +45,7 @@ GLOBAL OPTIONS
 ```
 
 ### Install
+The `install` command will download, verify and install a particular Spark/Hadoop version.
 
 ```
 USAGE
