@@ -3,7 +3,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from url_normalize import url_normalize
-from shui.version import Version
+from shui.models import Version
 
 
 def match_links(url, compiled_regex):
