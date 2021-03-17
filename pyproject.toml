@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shui"
-version = "0.3.0"
+version = "0.4.0"
 description = "Spark-Hadoop Unix Installer"
 license = "MIT"
 authors = ["James Robinson <james.em.robinson@gmail.com>"]
@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 bs4 = "^0.0.1"
 cleo = "^0.8.1"
 packaging = "^20.9"
