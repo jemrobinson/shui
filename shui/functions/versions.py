@@ -1,14 +1,14 @@
 """Functions for interacting with the available versions on the remote repository"""
 import re
-import requests
 from bs4 import BeautifulSoup
 from url_normalize import url_normalize
 from shui.classes import Version
+from .response import get_with_retry
 
 
 def match_links(url, compiled_regex):
     """Find all links at a URL which match a particular pattern"""
-    page = requests.get(url)
+    page = get_with_retry(url, retries=3, backoff_factor=0.5)
     soup = BeautifulSoup(page.content, "html.parser")
     matches = {
         elem.string: url_normalize(f"{url}/{elem['href']}")
