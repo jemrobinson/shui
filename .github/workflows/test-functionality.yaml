@@ -1,0 +1,43 @@
+name: Test functionality
+
+# Run workflow on pushes to matching branches
+# and on a regular schedule
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "* * */7 * *"  # run every week
+
+jobs:
+  test-functionality:
+    name: Test functionality
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+        python: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install shui dependencies
+        run: poetry install
+
+      - name: Test 'versions' command
+        run: |
+          poetry run shui versions
+
+      - name: Test 'install' command
+        run: |
+          poetry run shui install --latest
