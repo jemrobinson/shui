@@ -1,12 +1,13 @@
 """Functions for interacting with the available versions on the remote repository"""
 import re
+from typing import List, Pattern
 from bs4 import BeautifulSoup
 from url_normalize import url_normalize
 from shui.classes import Version
 from .response import get_with_retry
 
 
-def match_links(url: str, compiled_regex: re.Pattern) -> dict:
+def match_links(url: str, compiled_regex: Pattern) -> dict:
     """Find all links at a URL which match a particular pattern"""
     page = get_with_retry(url, retries=3, backoff_factor=0.5)
     soup = BeautifulSoup(page.content, "html.parser")
@@ -18,7 +19,7 @@ def match_links(url: str, compiled_regex: re.Pattern) -> dict:
     return matches
 
 
-def get_versions() -> list[str]:
+def get_versions() -> List[Version]:
     """Get all available Spark/Hadoop versions"""
     versions = []
 
