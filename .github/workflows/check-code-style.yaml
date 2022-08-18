@@ -4,6 +4,7 @@ on: [pull_request]
 
 jobs:
   check-code-style:
+    name: Check code style
     runs-on: ubuntu-latest
 
     steps:
@@ -27,5 +28,29 @@ jobs:
       - name: Check style with pylint
         run: poetry run pylint shui --disable=C0301
 
-      - name: Check type safety with mypy
+  check-type-hinting:
+    name: Check type hinting
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install shui dependencies
+        run: poetry install
+
+      - name: Check type hinting with mypy
         run: poetry run mypy shui
