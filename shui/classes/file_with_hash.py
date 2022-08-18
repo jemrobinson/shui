@@ -1,11 +1,13 @@
 """Class to contain file information for a file and its associated hash file"""
 import hashlib
+from typing import Iterator
+from .fileinfo import FileInfo
 
 
 class FileWithHash:
     """Class to contain file information for a file and its associated hash file"""
 
-    def __init__(self, file_, hashfile):
+    def __init__(self, file_: FileInfo, hashfile: FileInfo):
         if not hashfile.is_hashfile:
             raise ValueError(f"{hashfile.name} is not a hashfile!")
         if not hashfile.is_hash_for(file_):
@@ -15,16 +17,16 @@ class FileWithHash:
         self.file = file_
         self.hashfile = hashfile
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[FileInfo]:
         yield self.file
         yield self.hashfile
 
-    def remove(self):
+    def remove(self) -> None:
         """Remove tarball and SHA512 hash"""
         for fileinfo in self:
             fileinfo.remove()
 
-    def verify(self):
+    def verify(self) -> bool:
         """Verify that a file matches its SHA512 hash"""
         # Get the file hash
         file_hash = hashlib.sha512()

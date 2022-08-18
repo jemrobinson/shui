@@ -1,4 +1,5 @@
 """Class to contain information about a Spark/Hadoop version"""
+from __future__ import annotations
 import re
 from packaging.version import parse as version_parse
 
@@ -13,22 +14,22 @@ class Version:
         self.url = url
 
     @property
-    def spark(self):
+    def spark(self) -> str:
         """Spark version"""
         return self.regex.match(self.filename).group(1)
 
     @property
-    def hadoop(self):
+    def hadoop(self) -> str:
         """Hadoop version"""
         return self.regex.match(self.filename).group(2)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"<comment>Spark</comment> (<info>{self.spark}</info>) <comment>Hadoop</comment> (<info>{self.hadoop}</info>)"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<Version {self.filename} {self.url}>"
 
-    def __lt__(self, other):
+    def __lt__(self, other: Version) -> bool:
         if version_parse(self.spark) != version_parse(other.spark):
             return version_parse(self.spark) < version_parse(other.spark)
         return version_parse(self.hadoop) < version_parse(other.hadoop)
