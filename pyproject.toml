@@ -32,6 +32,7 @@ urllib3 = "^1.25.2"
 black = {version = "^20.8b0", allow-prereleases = true}
 mypy = "^0.971"
 pylint = "^2.9.0"
+types-beautifulsoup4 = "^4.11.4"
 types-requests = "^2.25.0"
 types-setuptools = "^64.0.1"
 types-urllib3 = "^1.25.2"

@@ -32,10 +32,12 @@ class FileWithHash:
         file_hash = hashlib.sha512()
         buffer_size = 524288  # read in chunks of 512kb
         with self.file.path.open("rb") as input_file:
-            input_bytes = True
-            while input_bytes:
+            while True:
                 input_bytes = input_file.read(buffer_size)
-                file_hash.update(input_bytes)
+                if len(input_bytes):
+                    file_hash.update(input_bytes)
+                else:
+                    break
         calculated_hash = file_hash.hexdigest().lower()
         # Read the reference hash
         with self.hashfile.path.open("r") as input_hash:
