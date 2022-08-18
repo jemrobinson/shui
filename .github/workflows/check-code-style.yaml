@@ -26,3 +26,6 @@ jobs:
 
       - name: Check style with pylint
         run: poetry run pylint shui --disable=C0301
+
+      - name: Check type safety with mypy
+        run: poetry run mypy shui
