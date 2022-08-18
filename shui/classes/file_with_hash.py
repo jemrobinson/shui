@@ -41,9 +41,7 @@ class FileWithHash:
         with self.hashfile.path.open("r") as input_hash:
             reference_hash = (
                 "".join(input_hash.readlines())
-                .replace("\n", " ")
-                .replace(" ", "")
-                .split(":")[1]
+                .split()[0]
                 .strip()
                 .lower()
             )
