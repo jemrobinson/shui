@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shui"
-version = "0.5.1"
+version = "0.6.0"
 description = "Spark-Hadoop Unix Installer"
 license = "MIT"
 authors = ["James Robinson <james.em.robinson@gmail.com>"]
