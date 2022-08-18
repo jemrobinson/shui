@@ -39,10 +39,5 @@ class FileWithHash:
         calculated_hash = file_hash.hexdigest().lower()
         # Read the reference hash
         with self.hashfile.path.open("r") as input_hash:
-            reference_hash = (
-                "".join(input_hash.readlines())
-                .split()[0]
-                .strip()
-                .lower()
-            )
+            reference_hash = "".join(input_hash.readlines()).split()[0].strip().lower()
         return calculated_hash == reference_hash
