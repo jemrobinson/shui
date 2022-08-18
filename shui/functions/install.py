@@ -1,8 +1,10 @@
 """Functions for installing a particular version from a local tarball"""
 import tarfile
+import pathlib3x as pathlib
+from shui.classes import FileInfo
 
 
-def extract_tarball(tarball, install_dir):
+def extract_tarball(tarball: FileInfo, install_dir: pathlib.Path) -> pathlib.Path:
     """Extract tarball to a local path"""
     if not tarball.path.is_file():
         raise IOError(f"<info>{tarball.path}</info> is not a file!")

@@ -6,7 +6,7 @@ from shui.classes import Version
 from .response import get_with_retry
 
 
-def match_links(url, compiled_regex):
+def match_links(url: str, compiled_regex: re.Pattern) -> dict:
     """Find all links at a URL which match a particular pattern"""
     page = get_with_retry(url, retries=3, backoff_factor=0.5)
     soup = BeautifulSoup(page.content, "html.parser")
@@ -18,7 +18,7 @@ def match_links(url, compiled_regex):
     return matches
 
 
-def get_versions():
+def get_versions() -> list[str]:
     """Get all available Spark/Hadoop versions"""
     versions = []
 

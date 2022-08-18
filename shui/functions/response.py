@@ -1,12 +1,15 @@
 """Request with built-in retry"""
-from requests import Session
+from requests import Response, Session
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 
 def get_with_retry(
-    url, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504)
-):
+    url: str,
+    retries: int = 3,
+    backoff_factor: float = 0.3,
+    status_forcelist: list[int] = (500, 502, 504),
+) -> Response:
     """Sends a GET request with retry options"""
     session = Session()
     retry = Retry(
