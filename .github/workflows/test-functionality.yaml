@@ -6,7 +6,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "* * */7 * *"  # run every week
+    - cron: "0 2 * * 0"  # run at 2am on Sundays
 
 jobs:
   test-functionality:
