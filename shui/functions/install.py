@@ -22,16 +22,16 @@ def extract_tarball(tarball: FileInfo, install_dir: pathlib.Path) -> pathlib.Pat
 
 
 def safe_extract(
-    tarfile: tarfile.TarFile,
+    tarball: tarfile.TarFile,
     extract_path: pathlib.Path,
     members=None,
     numeric_owner=False,
 ):
     """Extract tarfile to extract_path while validating that no files are extracted outside the base path"""
-    for member in tarfile.getmembers():
+    for member in tarball.getmembers():
         member_path = extract_path / member.name
         if member_path not in extract_path.resolve().parents:
             raise IOError(
                 f"Tar file attempted to extract to {member_path} which is outside the base path {extract_path}."
             )
-    tarfile.extractall(extract_path, members, numeric_owner=numeric_owner)
+    tarball.extractall(extract_path, members, numeric_owner=numeric_owner)
