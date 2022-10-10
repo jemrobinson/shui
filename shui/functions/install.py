@@ -1,15 +1,7 @@
 """Functions for installing a particular version from a local tarball"""
-import os
 import tarfile
 import pathlib3x as pathlib
 from shui.classes import FileInfo
-
-
-def is_within_directory(directory, target):
-    abs_directory = os.path.abspath(directory)
-    abs_target = os.path.abspath(target)
-    prefix = os.path.commonprefix([abs_directory, abs_target])
-    return prefix == abs_directory
 
 
 def extract_tarball(tarball: FileInfo, install_dir: pathlib.Path) -> pathlib.Path:
@@ -29,11 +21,17 @@ def extract_tarball(tarball: FileInfo, install_dir: pathlib.Path) -> pathlib.Pat
     return install_dir / extraction_dir
 
 
-def safe_extract(tar: tarfile.TarFile, path: str, members=None, *, numeric_owner=False):
-    for member in tar.getmembers():
-        member_path = os.path.join(path, member.name)
-        if not is_within_directory(path, member_path):
+def safe_extract(
+    tarfile: tarfile.TarFile,
+    extract_path: pathlib.Path,
+    members=None,
+    numeric_owner=False,
+):
+    """Extract tarfile to extract_path while validating that no files are extracted outside the base path"""
+    for member in tarfile.getmembers():
+        member_path = extract_path / member.name
+        if member_path not in extract_path.resolve().parents:
             raise IOError(
-                f"Tar file attempted to extract to {member_path} which is outside its base path."
+                f"Tar file attempted to extract to {member_path} which is outside the base path {extract_path}."
             )
-    tar.extractall(path, members, numeric_owner=numeric_owner)
+    tarfile.extractall(extract_path, members, numeric_owner=numeric_owner)
