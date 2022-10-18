@@ -4,7 +4,7 @@ name: Test functionality
 # and on a regular schedule
 on:
   push:
-    branches: [main]
+    branches: [main, 14-fix-install-command]
   schedule:
     - cron: "0 2 * * 0"  # run at 2am on Sundays
 
