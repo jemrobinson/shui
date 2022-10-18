@@ -7,8 +7,8 @@ Spark-Hadoop Unix Installer
 [![Python](https://img.shields.io/pypi/pyversions/shui.svg?logo=python&logoColor=white)](https://pypi.org/project/shui)
 [![PyPI version](https://badge.fury.io/py/shui.svg)](https://badge.fury.io/py/shui)
 [![PyPI downloads](https://img.shields.io/pypi/dm/shui)](https://img.shields.io/pypi/dm/shui)
-[![Code style](https://github.com/jemrobinson/shui/workflows/check-code-style/badge.svg)](https://github.com/jemrobinson/shui/actions)
-[![Functionality](https://github.com/jemrobinson/shui/actions/workflows/test-functionality.yaml/badge.svg)](https://github.com/jemrobinson/shui/actions)
+[![Code style](https://github.com/jemrobinson/shui/actions/workflows/check-code-formatting.yaml/badge.svg)](https://github.com/jemrobinson/shui/actions/workflows/check-code-formatting.yaml)
+[![Functionality](https://github.com/jemrobinson/shui/actions/workflows/test-functionality.yaml/badge.svg)](https://github.com/jemrobinson/shui/actions/workflows/test-functionality.yaml)
 
 This package uses Python to download and unpack a pre-built version of Spark/Hadoop from Apache.
 Its primary use-case is simplifying unattended installs where the user wants "the latest available version" of these tools.

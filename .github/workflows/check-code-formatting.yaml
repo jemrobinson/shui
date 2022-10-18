@@ -1,4 +1,4 @@
-name: Check code style
+name: Check code formatting
 
 on: [pull_request]
 
