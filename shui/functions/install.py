@@ -30,7 +30,8 @@ def safe_extract(
     """Extract tarfile to extract_path while validating that no files are extracted outside the base path"""
     for member in tarball.getmembers():
         member_path = extract_path / member.name
-        if member_path not in extract_path.resolve().parents:
+        # Confirm that extract_path is a parent of member_path
+        if extract_path not in member_path.resolve().parents:
             raise IOError(
                 f"Tar file attempted to extract to {member_path} which is outside the base path {extract_path}."
             )
