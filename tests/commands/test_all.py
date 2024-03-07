@@ -1,9 +1,8 @@
-from pathlib import Path
-
 import pytest
 import requests_mock
 from cleo.application import Application
 from cleo.testers.application_tester import ApplicationTester
+from pathlib3x import Path
 
 from shui.commands import InstallCommand, VersionsCommand
 
