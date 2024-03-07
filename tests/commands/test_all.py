@@ -54,8 +54,10 @@ def spark_example_tgz(fixtures_directory: Path) -> bytes:
 
 
 @pytest.fixture
-def spark_example_tgz_hash() -> str:
-    return "4c63792055a083e8c770370f22240853dc64da96e3200c7aa2710607b841bb0972c29eece43b068dd11c4f77719427b6c48df27e6e389efd664fb3e9b9743f9f\n"
+def spark_example_tgz_hash(fixtures_directory: Path) -> str:
+    with open(fixtures_directory / "example.tgz.sha512", "r") as f_in:
+        content = f_in.readlines()
+    return "\n".join(content)
 
 
 def test_install_fail(
