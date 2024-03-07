@@ -1,6 +1,5 @@
-from pathlib import Path
-
 import pytest
+from pathlib3x import Path
 
 from shui.classes import FileInfo, FileWithHash
 
