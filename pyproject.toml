@@ -30,7 +30,7 @@ url-normalize = ">=1.4"
 urllib3 = ">=2.0"
 
 [tool.poetry.dev-dependencies]
-black = ">=23.0"
+black = ">=24.0"
 coverage = ">=7.2"
 mypy = ">=1.4"
 pylint = ">=2.13"

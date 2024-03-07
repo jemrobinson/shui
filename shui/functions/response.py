@@ -1,4 +1,5 @@
 """Request with built-in retry"""
+
 from typing import Collection
 
 from requests import Response, Session

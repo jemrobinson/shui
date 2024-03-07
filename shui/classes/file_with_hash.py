@@ -1,4 +1,5 @@
 """Class to contain file information for a file and its associated hash file"""
+
 import hashlib
 from typing import Iterator
 

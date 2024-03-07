@@ -1,4 +1,5 @@
 """Command line entrypoint for shui application"""
+
 from cleo.application import Application
 
 from shui import __version__

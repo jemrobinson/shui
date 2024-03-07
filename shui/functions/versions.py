@@ -1,4 +1,5 @@
 """Functions for interacting with the available versions on the remote repository"""
+
 import re
 from typing import List, Pattern
 

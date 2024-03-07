@@ -1,4 +1,5 @@
 """Class to contain information about a Spark/Hadoop version"""
+
 import re
 
 from packaging.version import parse as version_parse
