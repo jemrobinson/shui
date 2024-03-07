@@ -1,4 +1,5 @@
 """Command-line application for getting available Spark/Hadoop versions"""
+
 from cleo.commands.command import Command
 from cleo.helpers import option
 

@@ -1,4 +1,5 @@
 """Command-line application for installing a particular Spark/Hadoop version"""
+
 from contextlib import suppress
 
 import pathlib3x as pathlib

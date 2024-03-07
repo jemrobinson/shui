@@ -1,4 +1,5 @@
 """Class to relate local and remote information about a Spark/Hadoop file"""
+
 import pathlib3x as pathlib
 import requests
 import tqdm
