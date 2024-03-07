@@ -32,4 +32,7 @@ jobs:
         run: poetry install
 
       - name: Run unit tests
-        run: poetry run pytest
+        run: poetry run coverage run -m pytest -v
+
+      - name: Generate coverage report
+        run: poetry run coverage report -m
