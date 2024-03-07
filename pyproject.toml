@@ -21,6 +21,7 @@ classifiers = [
 python = "^3.7"
 beautifulsoup4 = ">=4.12"
 cleo = ">=2.0"
+importlib-metadata = { version = ">=6.7", python = "<3.8" }
 packaging = ">=23.0"
 pathlib3x = ">=2.0"
 requests = ">=2.31"
@@ -30,10 +31,10 @@ urllib3 = ">=2.0"
 
 [tool.poetry.dev-dependencies]
 black = ">=23.0"
-coverage = ">=7.0"
+coverage = ">=7.2"
 mypy = ">=1.4"
 pylint = ">=2.13"
-pytest = ">=7.0"
+pytest = ">=7.4"
 requests-mock = ">=1.11"
 types-beautifulsoup4 = ">=4.12"
 types-requests = ">=2.31"
