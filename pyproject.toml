@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 beautifulsoup4 = ">=4.12"
 cleo = ">=2.0"
 importlib-metadata = { version = ">=6.7", python = "<3.8" }
