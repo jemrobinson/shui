@@ -1,9 +1,12 @@
 """Functions for interacting with the available versions on the remote repository"""
 import re
 from typing import List, Pattern
+
 from bs4 import BeautifulSoup
 from url_normalize import url_normalize
+
 from shui.classes import Version
+
 from .response import get_with_retry
 
 

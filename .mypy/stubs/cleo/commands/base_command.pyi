@@ -1,5 +1,6 @@
-from _typeshed import Incomplete
 from typing import Optional
+
+from _typeshed import Incomplete
 
 class CommandError(Exception): ...
 

@@ -1,11 +1,10 @@
-from .tools import (
-    deconstruct_url as deconstruct_url,
-    force_unicode as force_unicode,
-    quote as quote,
-    reconstruct_url as reconstruct_url,
-    unquote as unquote,
-)
 from _typeshed import Incomplete
+
+from .tools import deconstruct_url as deconstruct_url
+from .tools import force_unicode as force_unicode
+from .tools import quote as quote
+from .tools import reconstruct_url as reconstruct_url
+from .tools import unquote as unquote
 
 DEFAULT_PORT: Incomplete
 DEFAULT_CHARSET: str

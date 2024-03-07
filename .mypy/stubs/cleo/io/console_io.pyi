@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+
 from .io_mixin import IOMixin as IOMixin
 
 class ConsoleIO(IOMixin, Incomplete):

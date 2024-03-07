@@ -1,7 +1,9 @@
-from .base_command import BaseCommand as BaseCommand
-from cleo.io import ConsoleIO
-from _typeshed import Incomplete
 from typing import Optional
+
+from _typeshed import Incomplete
+from cleo.io import ConsoleIO
+
+from .base_command import BaseCommand as BaseCommand
 
 class Command(BaseCommand):
     signature: Incomplete

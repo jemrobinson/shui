@@ -1,6 +1,8 @@
-from .utils import Comparable
-from _typeshed import Incomplete
 from collections.abc import Generator
+
+from _typeshed import Incomplete
+
+from .utils import Comparable
 
 class TqdmTypeError(TypeError): ...
 class TqdmKeyError(KeyError): ...
