@@ -1,6 +1,8 @@
-from _typeshed import Incomplete
-from .commands import BaseCommand as BaseCommand
 from typing import Optional, Tuple
+
+from _typeshed import Incomplete
+
+from .commands import BaseCommand as BaseCommand
 
 class Application:
     def __init__(

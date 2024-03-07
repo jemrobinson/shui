@@ -1,6 +1,8 @@
 """Functions for installing a particular version from a local tarball"""
 import tarfile
+
 import pathlib3x as pathlib
+
 from shui.classes import FileInfo
 
 
