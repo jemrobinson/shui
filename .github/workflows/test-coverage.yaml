@@ -1,0 +1,35 @@
+name: Test coverage
+
+# Run workflow on pushes to matching branches
+on:
+  push:
+    branches: [main, add-tests]
+
+jobs:
+  test-coverage:
+    name: Test coverage
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install shui dependencies
+        run: poetry install
+
+      - name: Run unit tests
+        run: poetry run pytest
