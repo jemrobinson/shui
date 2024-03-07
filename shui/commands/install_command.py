@@ -17,18 +17,9 @@ class InstallCommand(Command):
     description = "Install a particular Spark and Hadoop version"
     options = [
         option("latest", description="Use the latest available version", flag=True),
-        option(
-            "spark",
-            description="Spark version",
-        ),
-        option(
-            "hadoop",
-            description="Hadoop version",
-        ),
-        option(
-            "target",
-            description="Directory to install into",
-        ),
+        option("spark", description="Spark version", flag=False),
+        option("hadoop", description="Hadoop version", flag=False),
+        option("target", description="Directory to install into", flag=False),
     ]
 
     def handle(self):
