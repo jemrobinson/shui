@@ -24,7 +24,9 @@ class FileInfo:
 
     def download(self) -> None:
         """Download this Spark/Hadoop version from a remote URL to a local path"""
-        response = requests.get(self.url, stream=True, allow_redirects=True)
+        response = requests.get(
+            self.url, stream=True, allow_redirects=True, timeout=600
+        )
         content_length = response.headers.get("content-length")
         total_bytes = int(content_length) if content_length else None
         with open(self.path, "wb") as output_file:
