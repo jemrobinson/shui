@@ -1,4 +1,4 @@
 """Base include for shui (Spark-Hadoop Unix Installer)"""
-import pkg_resources
+from importlib import metadata
 
-__version__ = pkg_resources.get_distribution("shui").version
+__version__ = metadata.version("shui")
