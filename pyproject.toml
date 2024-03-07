@@ -18,19 +18,19 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
-beautifulsoup4 = ">=4.8"
-cleo = ">=0.9"
-packaging = ">=21.0"
+python = "^3.7"
+beautifulsoup4 = ">=4.12"
+cleo = ">=2.0"
+packaging = ">=23.0"
 pathlib3x = ">=2.0"
-requests = ">=2.27"
-tqdm = ">=4.60"
+requests = ">=2.31"
+tqdm = ">=4.66"
 url-normalize = ">=1.4"
-urllib3 = ">=1.26"
+urllib3 = ">=2.0"
 
 [tool.poetry.dev-dependencies]
-black = ">=22.0"
-mypy = ">=0.900"
+black = ">=23.0"
+mypy = ">=1.4"
 pylint = ">=2.13"
 types-beautifulsoup4 = ">=4.12"
 types-requests = ">=2.31"
