@@ -1,15 +1,22 @@
 """Command-line application for getting available Spark/Hadoop versions"""
-from cleo import Command
+from cleo.commands.command import Command
+from cleo.helpers import option
+
 from shui.functions import get_versions
 
 
 class VersionsCommand(Command):
     """
     Get available Spark and Hadoop versions
-
-    versions
-        {--latest : Show only the latest available version}
     """
+
+    name = "versions"
+    description = "Get available Spark and Hadoop versions"
+    options = [
+        option(
+            "latest", description="Show only the latest available version", flag=True
+        )
+    ]
 
     def handle(self):
         versions = get_versions()

@@ -1,20 +1,35 @@
 """Command-line application for installing a particular Spark/Hadoop version"""
 from contextlib import suppress
-from cleo import Command
+
 import pathlib3x as pathlib
+from cleo.commands.command import Command
+from cleo.helpers import option
+
 from shui.functions import extract_tarball, get_file_details, get_versions
 
 
 class InstallCommand(Command):
     """
     Install a particular Spark and Hadoop version
-
-    install
-        {--latest : Use the latest available version}
-        {--spark=any : Spark version}
-        {--hadoop=any : Hadoop version}
-        {--target=cwd : Directory to install into}
     """
+
+    name = "install"
+    description = "Install a particular Spark and Hadoop version"
+    options = [
+        option("latest", description="Use the latest available version", flag=True),
+        option(
+            "spark",
+            description="Spark version",
+        ),
+        option(
+            "hadoop",
+            description="Hadoop version",
+        ),
+        option(
+            "target",
+            description="Directory to install into",
+        ),
+    ]
 
     def handle(self):
         # Get correct Spark/Hadoop version
