@@ -1,8 +1,12 @@
 name: Test functionality
 
-# Run workflow on pushes to matching branches
-# and on a regular schedule
+# Run workflow on each of
+# - pull requests to main
+# - pushes to main
+# - a weekly schedule
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
   schedule:
