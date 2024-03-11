@@ -20,10 +20,13 @@ class InstallCommand(Command):
         option("latest", description="Use the latest available version", flag=True),
         option("spark", description="Spark version", flag=False),
         option("hadoop", description="Hadoop version", flag=False),
-        option("target", description="Directory to install into", flag=False),
+        option(
+            "target", description="Directory to install into", flag=False, default="cwd"
+        ),
     ]
 
-    def handle(self):
+    def handle(self):  # pylint: disable=too-many-branches
+        """Install a particular Spark and Hadoop version"""
         # Get correct Spark/Hadoop version
         if self.option("latest"):
             selected_version = sorted(get_versions())[-1]
@@ -48,11 +51,15 @@ class InstallCommand(Command):
                 raise ValueError("Could not identify version to install!")
             selected_version = matching_versions[0]
         # Get installation directory, creating it if necessary
-        if self.option("target") != "cwd":
-            install_dir = pathlib.Path(self.option("target"))
-        else:
-            install_dir = pathlib.Path.cwd()
-        install_dir = install_dir.expanduser().resolve()
+        try:
+            if self.option("target") != "cwd":
+                install_dir = pathlib.Path(self.option("target"))
+            else:
+                install_dir = pathlib.Path.cwd()
+            install_dir = install_dir.expanduser().resolve()
+        except Exception as exc:
+            msg = f"Unable to resolve target directory from '{self.option('target')}'."
+            raise ValueError(msg) from exc
         with suppress(OSError):
             install_dir.mkdir(parents=True, exist_ok=True)
         if not install_dir.is_dir():
